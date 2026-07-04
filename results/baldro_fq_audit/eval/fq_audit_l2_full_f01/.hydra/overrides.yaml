@@ -1,0 +1,11 @@
+- experiment=eval/tofu/default
+- model=Llama-2-7b-chat-hf
+- task_name=fq_audit_l2_full_f01
+- paths.output_dir=results/baldro_fq_audit/eval/fq_audit_l2_full_f01
+- model.model_args.pretrained_model_name_or_path=/home/zkzhang/models/tofu_Llama-2-7b-chat-hf_full
+- model.tokenizer_args.pretrained_model_name_or_path=/home/zkzhang/models/tofu_Llama-2-7b-chat-hf_full
+- forget_split=forget01
+- holdout_split=holdout01
+- retain_logs_path=saves/eval/tofu_Llama-2-7b-chat-hf_retain99/TOFU_EVAL.json
+- eval.tofu.batch_size=8
+- eval.tofu.overwrite=true

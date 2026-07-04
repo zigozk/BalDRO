@@ -1,0 +1,2 @@
+sbatch/fq_audit/*.sh text eol=lf
+tools/fq_audit/*.py text eol=lf

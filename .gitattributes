@@ -1,2 +1,4 @@
+.gitattributes text eol=lf
 sbatch/fq_audit/*.sh text eol=lf
+sbatch/fq_audit/*.md text eol=lf
 tools/fq_audit/*.py text eol=lf

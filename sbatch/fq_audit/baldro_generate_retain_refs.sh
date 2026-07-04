@@ -12,7 +12,7 @@
 set -euo pipefail
 
 ROOT="${ROOT:-/home/zkzhang/unlearning/BalDRO}"
-CONDA_ENV="${CONDA_ENV:-baldro}"
+CONDA_ENV="${CONDA_ENV:-unlearning-new}"
 MODEL_ROOT="${MODEL_ROOT:-/home/zkzhang/models}"
 EVAL_BATCH_SIZE="${EVAL_BATCH_SIZE:-8}"
 
@@ -26,6 +26,15 @@ fi
 
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
+export HF_HOME="${HF_HOME:-/home/zkzhang/unlearning/HF_CACHE}"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-${HF_HOME}/datasets}"
+export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-${HF_HOME}/hub}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-${HF_HOME}/hub}"
+export HF_MODULES_CACHE="${HF_MODULES_CACHE:-${HF_HOME}/modules}"
+export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-${HF_HOME}/transformers}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
+export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-1}"
 
 # This evaluates retain models on the corresponding forget split. The resulting
 # TOFU_EVAL.json contains `forget_truth_ratio`, which FQ uses as the retain

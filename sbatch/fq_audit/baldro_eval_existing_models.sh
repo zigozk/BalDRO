@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=baldro_eval_audit
-#SBATCH --partition=gpu
-#SBATCH --gres=gpu:1
+#SBATCH -p compute
+#SBATCH -N 1
+#SBATCH --gres=gpu:nvidia_h100_80gb_hbm3:1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=80G
-#SBATCH --time=24:00:00
-#SBATCH --array=0-4%1
+#SBATCH --mem=96G
+#SBATCH -t 4:00:00
 #SBATCH --output=logs/baldro_fq_audit/%x-%A_%a.out
 #SBATCH --error=logs/baldro_fq_audit/%x-%A_%a.err
 
 set -euo pipefail
 
 ROOT="${ROOT:-/home/zkzhang/unlearning/BalDRO}"
-CONDA_ENV="${CONDA_ENV:-baldro}"
+CONDA_ENV="${CONDA_ENV:-unlearning-new}"
 MODEL_ROOT="${MODEL_ROOT:-/home/zkzhang/models}"
 EVAL_BATCH_SIZE="${EVAL_BATCH_SIZE:-8}"
 
@@ -26,6 +26,15 @@ fi
 
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
+export HF_HOME="${HF_HOME:-/home/zkzhang/unlearning/HF_CACHE}"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-${HF_HOME}/datasets}"
+export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-${HF_HOME}/hub}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-${HF_HOME}/hub}"
+export HF_MODULES_CACHE="${HF_MODULES_CACHE:-${HF_HOME}/modules}"
+export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-${HF_HOME}/transformers}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
+export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-1}"
 
 # label|model_config|model_path|forget_split|holdout_split|retain_log
 CASES=(
@@ -56,6 +65,7 @@ echo "  model_config=${model_config}"
 echo "  model_path=${model_path}"
 echo "  forget_split=${forget_split}"
 echo "  retain_log=${retain_log}"
+echo "  hf_home=${HF_HOME}"
 
 python src/eval.py --config-name=eval.yaml \
   experiment=eval/tofu/default \

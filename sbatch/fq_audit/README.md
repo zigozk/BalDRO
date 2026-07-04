@@ -7,17 +7,19 @@ Open-Unlearning-derived evaluator.
 
 Recommended order on the HPC:
 
-1. Submit `baldro_eval_existing_models.sh`.
-   - This uses BalDRO's bundled retain reference logs under `saves/eval`.
-   - It is the fastest check for whether BalDRO's evaluator reproduces the low FQ.
+1. Submit `baldro_train_eval_npo_llama2_splits.sh`.
+   - This is the main audit path: it runs NPO unlearning on BalDRO, then
+     evaluates through BalDRO's evaluator.
+   - It covers `forget01`, `forget05`, and `forget10`.
+   - It uses the shared cache path `/home/zkzhang/unlearning/HF_CACHE` by default.
 
-2. If reference logs are still suspicious, submit `baldro_generate_retain_refs.sh`.
+2. If reference logs are suspicious, submit `baldro_generate_retain_refs.sh`.
    - It regenerates retain-model eval logs into `results/baldro_fq_audit/retain_refs`.
    - Update or download the retain model paths before enabling all array items.
 
-3. If evaluator behavior looks sane, submit `baldro_train_eval_npo_llama2_splits.sh`.
-   - This trains BalDRO's NPO baseline on `forget01`, `forget05`, and `forget10`.
-   - It evaluates at every epoch through BalDRO's trainer.
+3. Optional: submit `baldro_eval_existing_models.sh`.
+   - This evaluates already-existing full/unlearned checkpoints without training.
+   - Use it only as a direct evaluator sanity check.
 
 4. Optional: submit `baldro_train_eval_drnpo_llama2_forget01_grid.sh`.
    - This checks BalDRO-DV on `forget01` across the paper/repo beta-DV grid.
@@ -28,8 +30,9 @@ Recommended order on the HPC:
 Common overrides:
 
 ```bash
-sbatch --export=ALL,ROOT=/home/zkzhang/unlearning/BalDRO,CONDA_ENV=baldro sbatch/fq_audit/baldro_eval_existing_models.sh
-sbatch --export=ALL,EVAL_BATCH_SIZE=4 sbatch/fq_audit/baldro_eval_existing_models.sh
+sbatch sbatch/fq_audit/baldro_train_eval_npo_llama2_splits.sh
+sbatch --array=0-0 sbatch/fq_audit/baldro_train_eval_npo_llama2_splits.sh
+sbatch --export=ALL,EVAL_BATCH_SIZE=4 sbatch/fq_audit/baldro_train_eval_npo_llama2_splits.sh
 sbatch --export=ALL,MODEL_ROOT=/home/zkzhang/models sbatch/fq_audit/baldro_generate_retain_refs.sh
 ```
 
@@ -42,3 +45,4 @@ Notes:
   `saves/eval`. Regenerating them is optional, but useful for ruling out a
   reference-log mismatch.
 - The default paths assume models are under `/home/zkzhang/models`.
+- The default Hugging Face cache path is `/home/zkzhang/unlearning/HF_CACHE`.

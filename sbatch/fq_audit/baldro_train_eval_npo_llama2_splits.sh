@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=baldro_npo_l2
-#SBATCH --partition=gpu
-#SBATCH --gres=gpu:1
+#SBATCH -p compute
+#SBATCH -N 1
+#SBATCH --gres=gpu:nvidia_h100_80gb_hbm3:1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=120G
+#SBATCH --mem=96G
 #SBATCH --time=48:00:00
 #SBATCH --array=0-2%1
 #SBATCH --output=logs/baldro_fq_audit/%x-%A_%a.out
@@ -12,7 +13,7 @@
 set -euo pipefail
 
 ROOT="${ROOT:-/home/zkzhang/unlearning/BalDRO}"
-CONDA_ENV="${CONDA_ENV:-baldro}"
+CONDA_ENV="${CONDA_ENV:-unlearning-new}"
 MODEL_ROOT="${MODEL_ROOT:-/home/zkzhang/models}"
 MODEL_PATH="${MODEL_PATH:-${MODEL_ROOT}/tofu_Llama-2-7b-chat-hf_full}"
 MODEL_CONFIG="${MODEL_CONFIG:-Llama-2-7b-chat-hf}"
@@ -37,6 +38,15 @@ fi
 
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
+export HF_HOME="${HF_HOME:-/home/zkzhang/unlearning/HF_CACHE}"
+export HF_DATASETS_CACHE="${HF_DATASETS_CACHE:-${HF_HOME}/datasets}"
+export HUGGINGFACE_HUB_CACHE="${HUGGINGFACE_HUB_CACHE:-${HF_HOME}/hub}"
+export HF_HUB_CACHE="${HF_HUB_CACHE:-${HF_HOME}/hub}"
+export HF_MODULES_CACHE="${HF_MODULES_CACHE:-${HF_HOME}/modules}"
+export TRANSFORMERS_CACHE="${TRANSFORMERS_CACHE:-${HF_HOME}/transformers}"
+export HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}"
+export TRANSFORMERS_OFFLINE="${TRANSFORMERS_OFFLINE:-1}"
+export HF_DATASETS_OFFLINE="${HF_DATASETS_OFFLINE:-1}"
 export WANDB_MODE="${WANDB_MODE:-offline}"
 export WANDB_PROJECT="${WANDB_PROJECT:-BalDRO-FQ-Audit}"
 
@@ -60,6 +70,24 @@ if [ ! -f "${retain_log}" ]; then
   exit 3
 fi
 
+echo "===== TOFU CACHE PREFLIGHT ====="
+python - <<PY
+from datasets import load_dataset
+
+configs = [
+    "${forget_split}",
+    "${retain_split}",
+    "${forget_split}_perturbed",
+    "${holdout_split}",
+    "retain_perturbed",
+    "real_authors_perturbed",
+    "world_facts_perturbed",
+]
+for name in configs:
+    ds = load_dataset("locuslab/TOFU", name)
+    print(f"{name}: {ds}")
+PY
+
 suffix="lr${LR}_b${TRAIN_BSZ}_ga${GRAD_ACC}_beta${NPO_BETA}_gamma${NPO_GAMMA}_e${EPOCHS}"
 task_name="fq_audit_unlearn_tofu_${MODEL_CONFIG}_${forget_split}_${TRAINER}_${suffix}"
 output_dir="results/baldro_fq_audit/train/${task_name}"
@@ -67,6 +95,8 @@ output_dir="results/baldro_fq_audit/train/${task_name}"
 echo "Training ${TRAINER} ${forget_split}"
 echo "  model_path=${MODEL_PATH}"
 echo "  output_dir=${output_dir}"
+echo "  hf_home=${HF_HOME}"
+echo "  retain_log=${retain_log}"
 
 python src/train.py --config-name=unlearn.yaml \
   experiment=unlearn/tofu/default \

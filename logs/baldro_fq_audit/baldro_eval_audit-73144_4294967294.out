@@ -1,0 +1,82 @@
+Evaluating l2_full_f01
+  model_config=Llama-2-7b-chat-hf
+  model_path=/home/zkzhang/models/tofu_Llama-2-7b-chat-hf_full
+  forget_split=forget01
+  retain_log=saves/eval/tofu_Llama-2-7b-chat-hf_retain99/TOFU_EVAL.json
+  hf_home=/home/zkzhang/unlearning/HF_CACHE
+[2026-07-04 13:27:32,138] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[[36m2026-07-04 13:28:00,716[0m][[34mevaluator[0m][[32mINFO[0m] - Evaluations stored in the experiment directory: results/baldro_fq_audit/eval/fq_audit_l2_full_f01[0m
+[[36m2026-07-04 13:28:00,727[0m][[34mevaluator[0m][[32mINFO[0m] - ***** Running TOFU evaluation suite *****[0m
+[[36m2026-07-04 13:28:00,727[0m][[34mevaluator[0m][[32mINFO[0m] - Fine-grained evaluations will be saved to: results/baldro_fq_audit/eval/fq_audit_l2_full_f01/TOFU_EVAL.json[0m
+[[36m2026-07-04 13:28:00,727[0m][[34mevaluator[0m][[32mINFO[0m] - Aggregated evaluations will be summarised in: results/baldro_fq_audit/eval/fq_audit_l2_full_f01/TOFU_SUMMARY.json[0m
+[[36m2026-07-04 13:28:00,953[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:28:00,961[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'retain_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/retain_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:16 2026).[0m
+[[36m2026-07-04 13:28:01,048[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating retain_Q_A_Prob[0m
+Evaluated 400 examples
+[[36m2026-07-04 13:28:08,281[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:28:08,285[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'retain_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/retain_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:16 2026).[0m
+[[36m2026-07-04 13:28:08,294[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating retain_Q_A_ROUGE[0m
+Evaluated 400 examples
+[[36m2026-07-04 13:30:00,541[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:30:00,545[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'retain_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/retain_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:16 2026).[0m
+[[36m2026-07-04 13:30:00,551[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating retain_Q_A_PARA_Prob[0m
+Evaluated 400 examples
+[[36m2026-07-04 13:30:05,830[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:30:05,833[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'retain_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/retain_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:16 2026).[0m
+[[36m2026-07-04 13:30:05,838[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating retain_Q_A_PERT_Prob[0m
+Evaluated 400 examples
+[[36m2026-07-04 13:30:31,560[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating retain_Truth_Ratio[0m
+[[36m2026-07-04 13:30:31,564[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:30:31,570[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'real_authors_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/real_authors_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:35 2026).[0m
+[[36m2026-07-04 13:30:31,635[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating ra_Q_A_Prob[0m
+Evaluated 100 examples
+[[36m2026-07-04 13:30:32,273[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:30:32,275[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'real_authors_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/real_authors_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:35 2026).[0m
+[[36m2026-07-04 13:30:32,279[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating ra_Q_A_PERT_Prob[0m
+Evaluated 100 examples
+[[36m2026-07-04 13:30:34,074[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating ra_Q_A_Prob_normalised[0m
+[[36m2026-07-04 13:30:34,076[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:30:34,079[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'real_authors_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/real_authors_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:35 2026).[0m
+[[36m2026-07-04 13:30:34,083[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating ra_Q_A_ROUGE[0m
+Evaluated 100 examples
+[[36m2026-07-04 13:30:50,391[0m][[34mmetrics[0m][[32mINFO[0m] - Skipping ra_Truth_Ratio's precompute ra_Q_A_Prob, already evaluated.[0m
+[[36m2026-07-04 13:30:50,391[0m][[34mmetrics[0m][[32mINFO[0m] - Skipping ra_Truth_Ratio's precompute ra_Q_A_PERT_Prob, already evaluated.[0m
+[[36m2026-07-04 13:30:50,391[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating ra_Truth_Ratio[0m
+[[36m2026-07-04 13:30:50,394[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:30:50,430[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'world_facts_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/world_facts_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:25 2026).[0m
+[[36m2026-07-04 13:30:50,486[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating wf_Q_A_Prob[0m
+Evaluated 117 examples
+[[36m2026-07-04 13:30:51,195[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:30:51,197[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'world_facts_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/world_facts_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:25 2026).[0m
+[[36m2026-07-04 13:30:51,201[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating wf_Q_A_PERT_Prob[0m
+Evaluated 117 examples
+[[36m2026-07-04 13:30:53,171[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating wf_Q_A_Prob_normalised[0m
+[[36m2026-07-04 13:30:53,173[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:30:53,176[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'world_facts_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/world_facts_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:16:25 2026).[0m
+[[36m2026-07-04 13:30:53,181[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating wf_Q_A_ROUGE[0m
+Evaluated 117 examples
+[[36m2026-07-04 13:31:21,248[0m][[34mmetrics[0m][[32mINFO[0m] - Skipping wf_Truth_Ratio's precompute wf_Q_A_Prob, already evaluated.[0m
+[[36m2026-07-04 13:31:21,249[0m][[34mmetrics[0m][[32mINFO[0m] - Skipping wf_Truth_Ratio's precompute wf_Q_A_PERT_Prob, already evaluated.[0m
+[[36m2026-07-04 13:31:21,249[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating wf_Truth_Ratio[0m
+[[36m2026-07-04 13:31:21,249[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating model_utility[0m
+[[36m2026-07-04 13:31:21,250[0m][[34mevaluator[0m][[32mINFO[0m] - Result for metric model_utility:	0.628240[0m
+[[36m2026-07-04 13:31:21,282[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:31:21,285[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'forget01_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/forget01_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:15:47 2026).[0m
+[[36m2026-07-04 13:31:21,340[0m][[34mmetrics[0m][[32mINFO[0m] - Loading evaluations from saves/eval/tofu_Llama-2-7b-chat-hf_retain99/TOFU_EVAL.json[0m
+[[36m2026-07-04 13:31:21,367[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_Q_A_PARA_Prob[0m
+Evaluated 40 examples
+[[36m2026-07-04 13:31:21,942[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:31:21,945[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'forget01_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/forget01_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:15:47 2026).[0m
+[[36m2026-07-04 13:31:21,949[0m][[34mmetrics[0m][[32mINFO[0m] - Loading evaluations from saves/eval/tofu_Llama-2-7b-chat-hf_retain99/TOFU_EVAL.json[0m
+[[36m2026-07-04 13:31:21,956[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_Q_A_PERT_Prob[0m
+Evaluated 40 examples
+[[36m2026-07-04 13:31:24,677[0m][[34mmetrics[0m][[32mINFO[0m] - Loading evaluations from saves/eval/tofu_Llama-2-7b-chat-hf_retain99/TOFU_EVAL.json[0m
+[[36m2026-07-04 13:31:24,684[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_truth_ratio[0m
+[[36m2026-07-04 13:31:24,685[0m][[34mmetrics[0m][[32mINFO[0m] - Loading evaluations from saves/eval/tofu_Llama-2-7b-chat-hf_retain99/TOFU_EVAL.json[0m
+[[36m2026-07-04 13:31:24,691[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_quality[0m
+[[36m2026-07-04 13:31:24,692[0m][[34mevaluator[0m][[32mINFO[0m] - Result for metric forget_quality:	0.001271[0m
+[[36m2026-07-04 13:31:24,721[0m][[34mdatasets.load[0m][[33mWARNING[0m] - Using the latest cached version of the dataset since locuslab/TOFU couldn't be found on the Hugging Face Hub (offline mode is enabled).[0m
+[[36m2026-07-04 13:31:24,735[0m][[34mdatasets.packaged_modules.cache.cache[0m][[33mWARNING[0m] - Found the latest cached dataset configuration 'forget01_perturbed' at /home/zkzhang/unlearning/HF_CACHE/datasets/locuslab___tofu/forget01_perturbed/0.0.0/324592d84ae4f482ac7249b9285c2ecdb53e3a68 (last modified on Mon Jan 19 13:15:47 2026).[0m
+[[36m2026-07-04 13:31:24,739[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_Q_A_ROUGE[0m
+Evaluated 40 examples
+[[36m2026-07-04 13:31:36,851[0m][[34mmetrics[0m][[32mINFO[0m] - Evaluating forget_Q_A_gibberish[0m

@@ -12,7 +12,7 @@
 set -euo pipefail
 
 ROOT="${ROOT:-/home/zkzhang/unlearning/BalDRO}"
-CONDA_ENV="${CONDA_ENV:-unlearning-new}"
+CONDA_ENV="${CONDA_ENV:-unlearning}"
 MODEL_ROOT="${MODEL_ROOT:-/home/zkzhang/models}"
 EVAL_BATCH_SIZE="${EVAL_BATCH_SIZE:-8}"
 

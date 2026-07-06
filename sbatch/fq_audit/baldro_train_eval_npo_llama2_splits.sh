@@ -5,7 +5,7 @@
 #SBATCH --gres=gpu:nvidia_h100_80gb_hbm3:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=96G
-#SBATCH --time=48:00:00
+#SBATCH --time=6:00:00
 #SBATCH --array=0-2%1
 #SBATCH --output=logs/baldro_fq_audit/%x-%A_%a.out
 #SBATCH --error=logs/baldro_fq_audit/%x-%A_%a.err
